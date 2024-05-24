@@ -17,5 +17,10 @@ function printGrid () {
     }
 }
 
+// change individual div background color on mouseover
+grid.addEventListener('mouseover', (e) => {
+    e.target.style.backgroundColor = '#FF10F0';
+});
+
 boxMaker();
 printGrid();
