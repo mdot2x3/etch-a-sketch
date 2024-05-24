@@ -1,5 +1,16 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    /* ensure the container takes up the full width of the window and the full height of the viewport */
+    height: 100vh;
+    width: 100%;
+}
+
 .box {
-    height: 25px;
-    width: 25px;
+    /* makes each box take up 1/16th of the container's width. The 1 0 part of the shorthand ensures the boxes grow evenly but don't shrink smaller than their initial size. */
+    flex: 1 0 calc(100% / 16);
+    height: calc(100% / 16);
     border: 1px dotted black;
+    /* ensures that the border and padding are included in the element's total width and height. */
+    box-sizing: border-box;
 }
