@@ -7,6 +7,8 @@ function boxMaker (num) {
     for (let i = 0; i < (num * num); i++) {
         const oneBox = document.createElement('div');
         oneBox.classList.add('box');
+        // initialize brightness to 1 (100%)
+        oneBox.style.filter = 'brightness(1)';
         box.push(oneBox);
     }
 }
@@ -18,12 +20,22 @@ function printGrid () {
     }
 }
 
-// change individual div background color on mouseover
+// change individual div background color on mouseover, darken on subsequent interactions
 grid.addEventListener('mouseover', (e) => {
     const randInt = (int) => {
         return Math.floor(Math.random() * int)
-    };
-    e.target.style.backgroundColor = `rgb(${randInt(256)}, ${randInt(256)}, ${randInt(256)})`;
+    }
+
+    if (!e.target.style.backgroundColor) {
+        e.target.style.backgroundColor = `rgb(${randInt(256)}, ${randInt(256)}, ${randInt(256)})`;
+    }
+    
+    // reduce the brightness by 0.10 on each mouseover
+    let currentBrightness = parseFloat(e.target.style.filter.match(/brightness\(([^)]+)\)/)[1]);
+    if (currentBrightness > 0) {
+        currentBrightness -= 0.10;
+        e.target.style.filter = `brightness(${currentBrightness})`;
+    }
 });
 
 // create button via DOM
@@ -55,18 +67,24 @@ function buttonPrompt (button) {
 function rebuildGrid (userChoice) {
     box = [];
     grid.textContent = '';
+
     boxMaker(userChoice);
+
     box.forEach((e) => {
         e.setAttribute('style', 
         `flex: 1 0 calc(100% / ${userChoice});
         height: calc(100% / ${userChoice});
         border: 1px dotted black;
-        box-sizing: border-box;`
+        box-sizing: border-box;
+        filter: brightness(1);` // initialize brightness to 1 (100%)
         );
     });
+    
     printGrid();
+
 }
 
+// initial grid setup
 boxMaker(16);
 printGrid();
 gridButton();
