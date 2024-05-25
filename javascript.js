@@ -48,25 +48,22 @@ function buttonPrompt (button) {
     });
 }
 
-// after user input received delete current grid and build a new one
+// after user input received, clear current grid and build a new one
 function rebuildGrid (userChoice) {
-    body.remove(grid);
-    // create new grid here
+    box = [];
+    grid.textContent = '';
     boxMaker(userChoice);
+    box.forEach((e) => {
+        e.setAttribute('style', 
+        `flex: 1 0 calc(100% / ${userChoice});
+        height: calc(100% / ${userChoice});
+        border: 1px dotted black;
+        box-sizing: border-box;`
+        );
+    });
     printGrid();
 }
 
 boxMaker(16);
 printGrid();
 gridButton();
-
-
-
-// // create new div elements
-// function boxMaker () {
-//     for (let i = 0; i < (userChoice * userChoice); i++) {
-//         const oneBox = document.createElement('div');
-//         oneBox.classList.add('box');
-//         box.push(oneBox);
-//     }
-// }
