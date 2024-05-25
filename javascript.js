@@ -43,6 +43,7 @@ function gridButton () {
     const buttonCont = document.createElement('div');
     buttonCont.classList.add('buttonCont');
     const button = document.createElement('button');
+    button.textContent = "Set Grid Size";
     buttonCont.appendChild(button);
     body.insertBefore(buttonCont, grid);
 
@@ -52,10 +53,10 @@ function gridButton () {
 // event handler for button user can use to set grid size
 function buttonPrompt (button) {
     button.addEventListener('click', () => {
-        let userChoice = prompt("Building grid... Please enter the number of squares per side(1-100 are valid)(default set to 16).", 16);
+        let userChoice = prompt("Building grid...\nPlease enter the number of squares per side (1-100 valid)\n(default set to 16).", 16);
         
         while (userChoice < 1 || userChoice > 100) {
-            userChoice = prompt("That is not a valid value. Please enter a number between 1 and 100. (default is set to 16).", 16);
+            userChoice = prompt("That is not a valid value.\nPlease enter a number between 1 and 100.\n(default set to 16).", 16);
         };
     
         rebuildGrid(userChoice);
