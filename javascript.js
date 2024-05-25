@@ -20,7 +20,10 @@ function printGrid () {
 
 // change individual div background color on mouseover
 grid.addEventListener('mouseover', (e) => {
-    e.target.style.backgroundColor = '#FF10F0';
+    const randInt = (int) => {
+        return Math.floor(Math.random() * int)
+    };
+    e.target.style.backgroundColor = `rgb(${randInt(256)}, ${randInt(256)}, ${randInt(256)})`;
 });
 
 // create button via DOM
