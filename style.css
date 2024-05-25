@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -13,4 +19,16 @@
     border: 1px dotted black;
     /* ensures that the border and padding are included in the element's total width and height. */
     box-sizing: border-box;
+}
+
+.buttonCont {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    height: 50px;
+    width: 150px;
 }
